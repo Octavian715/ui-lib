@@ -1,0 +1,15 @@
+src/
+.storybook/
+storybook-static/
+node_modules/
+*.stories.ts
+*.stories.vue
+.gitignore
+.eslintrc
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+index.html
+src/App.vue
+src/main.ts
+USAGE_EXAMPLE.md

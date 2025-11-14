@@ -1,0 +1,35 @@
+import type { App, Plugin } from 'vue'
+
+// Export components
+export { Button } from './components/Button'
+export { Modal } from './components/Modal'
+export { Tooltip } from './components/Tooltip'
+export { Dropdown } from './components/Dropdown'
+export { Input } from './components/Input'
+
+// Export types
+export type { ButtonVariantProps } from './components/Button/buttonVariants'
+
+// Export utilities
+export { cn } from './utils/cn'
+
+// Import components for plugin
+import { Button } from './components/Button'
+import { Modal } from './components/Modal'
+import { Tooltip } from './components/Tooltip'
+import { Dropdown } from './components/Dropdown'
+import { Input } from './components/Input'
+
+// Component registration plugin
+export const UILibPlugin: Plugin = {
+  install(app: App) {
+    app.component('UIButton', Button)
+    app.component('UIModal', Modal)
+    app.component('UITooltip', Tooltip)
+    app.component('UIDropdown', Dropdown)
+    app.component('UIInput', Input)
+  }
+}
+
+// Default export
+export default UILibPlugin

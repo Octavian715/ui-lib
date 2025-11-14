@@ -129,26 +129,28 @@ const inputClass = computed(() => {
   }
 
   return cn(
-    // Modern input with subtle glass effect
+    // MagicUI input with dramatic effects
     'block w-full',
-    'rounded-xl border',
-    'bg-neutral-800/50 backdrop-blur-sm',
+    'rounded-2xl border-2',
+    'bg-neutral-900/40 backdrop-blur-2xl',
     'text-white placeholder-neutral-500',
     'outline-none',
-    'transition-all duration-250',
+    'transition-all duration-500 transform-gpu',
 
-    // Focus styles - Purple glow
-    'focus:ring-3 focus:ring-primary-500/50 focus:ring-offset-0',
-    'focus:bg-neutral-800/70',
+    // Focus styles - Intense electric glow
+    'focus:ring-4 focus:ring-primary-500/60 focus:ring-offset-0',
+    'focus:bg-neutral-900/60',
+    'focus:shadow-[0_0_30px_rgba(255,0,110,0.4)]',
+    'focus:scale-[1.02]',
 
-    // Border colors
+    // Border colors with glow
     props.error
-      ? 'border-red-500 focus:border-red-400'
-      : 'border-white/10 hover:border-white/20 focus:border-primary-500/50',
+      ? 'border-red-500/60 focus:border-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]'
+      : 'border-white/10 hover:border-primary-500/30 focus:border-primary-500/60 hover:shadow-[0_0_15px_rgba(255,0,110,0.2)]',
 
     // States
-    props.disabled && 'opacity-40 cursor-not-allowed bg-neutral-900/30 hover:border-white/10',
-    props.readonly && 'cursor-default bg-neutral-800/30',
+    props.disabled && 'opacity-30 cursor-not-allowed bg-neutral-900/20 hover:border-white/10',
+    props.readonly && 'cursor-default bg-neutral-900/20',
 
     // Padding adjustments for icons
     slots.prefix && 'pl-10',

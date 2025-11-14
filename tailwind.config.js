@@ -7,34 +7,48 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Modern purple primary
+        // Electric Pink primary
         primary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-          950: '#3b0764',
+          50: '#fff0f9',
+          100: '#ffe0f3',
+          200: '#ffc1e8',
+          300: '#ff92d8',
+          400: '#ff52c1',
+          500: '#ff006e',
+          600: '#e6006b',
+          700: '#c00059',
+          800: '#9e0049',
+          900: '#82003d',
+          950: '#500026',
         },
-        // Cyan secondary accent
+        // Electric Purple secondary
         secondary: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
+          50: '#f5f0ff',
+          100: '#ede5ff',
+          200: '#ddd0ff',
+          300: '#c4abff',
+          400: '#a779ff',
+          500: '#8338ec',
+          600: '#7420e0',
+          700: '#6318c5',
+          800: '#5315a0',
+          900: '#451382',
+          950: '#2a0a57',
         },
-        // Neutral warmer tones
+        // Accent colors
+        accent: {
+          blue: {
+            50: '#eff6ff',
+            500: '#3a86ff',
+            600: '#2563eb',
+          },
+          orange: {
+            50: '#fff7ed',
+            500: '#fb5607',
+            600: '#ea580c',
+          },
+        },
+        // Deep space neutral
         neutral: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -43,10 +57,10 @@ export default {
           400: '#a3a3a3',
           500: '#737373',
           600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
-          950: '#0a0a0a',
+          700: '#3f3f46',
+          800: '#27272a',
+          900: '#18181b',
+          950: '#09090b',
         },
         success: {
           light: '#10b981',

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern dark theme with subtle gradients */
+/* MagicUI Dark Mode - Animated mesh gradients & effects */
 @layer base {
   * {
     @apply border-neutral-700;
@@ -10,27 +10,48 @@
 
   body {
     @apply bg-neutral-950 text-white;
-    background-image: radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
-                      radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
-                      radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
+    /* Multi-layer animated mesh gradient background */
+    background-image:
+      /* Dot pattern for texture */
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      /* Main mesh gradients - Electric Pink, Purple, Blue, Orange */
+      radial-gradient(ellipse 80% 50% at 0% 0%, rgba(255, 0, 110, 0.15) 0px, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 100% 0%, rgba(131, 56, 236, 0.15) 0px, transparent 50%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(58, 134, 255, 0.10) 0px, transparent 50%),
+      radial-gradient(ellipse 60% 80% at 0% 100%, rgba(251, 86, 7, 0.10) 0px, transparent 50%),
+      radial-gradient(ellipse 80% 100% at 100% 100%, rgba(255, 0, 110, 0.12) 0px, transparent 50%);
+    background-size: 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    /* Subtle animation effect */
+    animation: mesh-shift 20s ease-in-out infinite alternate;
   }
 
-  /* Modern scrollbar with purple accent */
+  @keyframes mesh-shift {
+    0% {
+      background-position: 0 0, 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%;
+    }
+    100% {
+      background-position: 0 0, 10% 10%, 90% 10%, 50% 60%, 10% 90%, 90% 90%;
+    }
+  }
+
+  /* Electric scrollbar with glow */
   ::-webkit-scrollbar {
-    @apply w-2.5 h-2.5;
+    @apply w-3 h-3;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-neutral-900/50 rounded-full;
+    @apply bg-neutral-900/30 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary-500/30 hover:bg-primary-500/50 rounded-full;
-    transition: background-color 0.2s;
+    @apply bg-gradient-to-b from-primary-500 to-secondary-500 rounded-full;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+    transition: all 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-500/60;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.8), 0 0 40px rgba(131, 56, 236, 0.5);
   }
 }
 

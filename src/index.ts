@@ -23,6 +23,8 @@ export { Skeleton } from './components/Skeleton'
 export { Accordion, AccordionItem } from './components/Accordion'
 export { Breadcrumb } from './components/Breadcrumb'
 export { Pagination } from './components/Pagination'
+export { Table } from './components/Table'
+export type { TableColumn } from './components/Table'
 
 // Export composables
 export { useToast } from './composables/useToast'
@@ -60,6 +62,7 @@ import { Skeleton } from './components/Skeleton'
 import { Accordion, AccordionItem } from './components/Accordion'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Pagination } from './components/Pagination'
+import { Table } from './components/Table'
 
 // Component registration plugin
 export const UILibPlugin: Plugin = {
@@ -91,6 +94,7 @@ export const UILibPlugin: Plugin = {
     app.component('UIAccordionItem', AccordionItem)
     app.component('UIBreadcrumb', Breadcrumb)
     app.component('UIPagination', Pagination)
+    app.component('UITable', Table)
   }
 }
 

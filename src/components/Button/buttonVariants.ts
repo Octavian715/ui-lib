@@ -1,83 +1,87 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 export const buttonVariants = cva(
-  // Base styles - consistent across all variants
+  // Base styles - Modern, smooth & elevated
   [
     'inline-flex items-center justify-center',
-    'font-medium',
-    'rounded-lg',
-    'border-2',
-    'transition-all duration-200',
+    'font-semibold',
+    'rounded-xl', // More rounded for modern look
+    'border-0', // Remove borders for cleaner look
+    'transition-all duration-300 ease-out',
     'outline-none',
-    // Focus styles
-    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
+    'shadow-md',
+    // Focus styles - Purple glow
+    'focus-visible:ring-3 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950',
     // Disabled styles
-    'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
-    // Active state
-    'active:scale-[0.98]',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+    // Active state - Subtle scale
+    'active:scale-[0.97]',
+    // Transform for smooth hover
+    'transform',
   ],
   {
     variants: {
       variant: {
         primary: [
-          'bg-primary-600',
+          // Purple gradient background
+          'bg-gradient-to-br from-primary-500 to-primary-600',
           'text-white',
-          'border-primary-600',
-          'hover:bg-primary-700',
-          'hover:border-primary-700',
-          'hover:shadow-md',
-          'active:bg-primary-800',
+          'hover:from-primary-600 hover:to-primary-700',
+          'hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]', // Purple glow
+          'hover:-translate-y-0.5',
+          'active:from-primary-700 active:to-primary-800',
         ],
         secondary: [
-          'bg-neutral-800',
+          // Cyan gradient
+          'bg-gradient-to-br from-secondary-500 to-secondary-600',
           'text-white',
-          'border-neutral-700',
-          'hover:bg-neutral-700',
-          'hover:border-neutral-600',
-          'hover:shadow-md',
-          'active:bg-neutral-600',
+          'hover:from-secondary-600 hover:to-secondary-700',
+          'hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]', // Cyan glow
+          'hover:-translate-y-0.5',
+          'active:from-secondary-700 active:to-secondary-800',
         ],
         outline: [
           'bg-transparent',
           'text-white',
-          'border-neutral-600',
-          'hover:bg-neutral-800',
-          'hover:border-neutral-500',
-          'active:bg-neutral-700',
+          'ring-2 ring-inset ring-neutral-700',
+          'hover:bg-white/5',
+          'hover:ring-neutral-600',
+          'hover:shadow-lg',
+          'active:bg-white/10',
         ],
         ghost: [
           'bg-transparent',
           'text-white',
-          'border-transparent',
-          'hover:bg-neutral-800',
-          'hover:border-neutral-700',
-          'active:bg-neutral-700',
+          'shadow-none',
+          'hover:bg-white/10',
+          'hover:shadow-md',
+          'active:bg-white/15',
         ],
         danger: [
-          'bg-error-600',
+          // Red gradient with glow
+          'bg-gradient-to-br from-red-500 to-red-600',
           'text-white',
-          'border-error-600',
-          'hover:bg-error-700',
-          'hover:border-error-700',
-          'hover:shadow-md',
-          'active:bg-error-800',
-          'focus-visible:ring-error-500',
+          'hover:from-red-600 hover:to-red-700',
+          'hover:shadow-[0_0_20px_rgba(239,68,68,0.4)]', // Red glow
+          'hover:-translate-y-0.5',
+          'active:from-red-700 active:to-red-800',
+          'focus-visible:ring-red-500/50',
         ],
         success: [
-          'bg-success-600',
+          // Green gradient with glow
+          'bg-gradient-to-br from-emerald-500 to-emerald-600',
           'text-white',
-          'border-success-600',
-          'hover:bg-success-700',
-          'hover:border-success-700',
-          'hover:shadow-md',
-          'active:bg-success-800',
-          'focus-visible:ring-success-500',
+          'hover:from-emerald-600 hover:to-emerald-700',
+          'hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]', // Green glow
+          'hover:-translate-y-0.5',
+          'active:from-emerald-700 active:to-emerald-800',
+          'focus-visible:ring-emerald-500/50',
         ],
       },
       size: {
-        sm: ['text-sm', 'h-8', 'px-3', 'gap-1.5'],
-        md: ['text-base', 'h-10', 'px-4', 'gap-2'],
-        lg: ['text-lg', 'h-12', 'px-6', 'gap-2.5'],
+        sm: ['text-sm', 'h-9', 'px-4', 'gap-2'],
+        md: ['text-base', 'h-11', 'px-6', 'gap-2'],
+        lg: ['text-lg', 'h-13', 'px-8', 'gap-3'],
       },
       fullWidth: {
         true: 'w-full',

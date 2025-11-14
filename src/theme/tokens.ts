@@ -1,60 +1,89 @@
 /**
- * Design Tokens
- * Centralized design system for consistent UI/UX
+ * Design Tokens - Modern UI Library 2025
+ * Contemporary design system with glassmorphism, gradients & glow effects
  */
 
 export const designTokens = {
-  // Colors - Semantic naming for better consistency
+  // Colors - Modern purple/violet palette with cyan accents
   colors: {
-    // Primary brand colors
+    // Primary brand colors - Purple/Violet gradient
     primary: {
-      50: '#eff6ff',
-      100: '#dbeafe',
-      200: '#bfdbfe',
-      300: '#93c5fd',
-      400: '#60a5fa',
-      500: '#3b82f6',
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a',
-      950: '#172554',
+      50: '#faf5ff',
+      100: '#f3e8ff',
+      200: '#e9d5ff',
+      300: '#d8b4fe',
+      400: '#c084fc',
+      500: '#a855f7',  // Main purple
+      600: '#9333ea',
+      700: '#7e22ce',
+      800: '#6b21a8',
+      900: '#581c87',
+      950: '#3b0764',
     },
-    // Neutral/Gray scale
+    // Secondary accent - Cyan/Blue
+    secondary: {
+      50: '#ecfeff',
+      100: '#cffafe',
+      200: '#a5f3fc',
+      300: '#67e8f9',
+      400: '#22d3ee',
+      500: '#06b6d4',  // Main cyan
+      600: '#0891b2',
+      700: '#0e7490',
+      800: '#155e75',
+      900: '#164e63',
+    },
+    // Neutral/Gray scale - Warmer tones
     neutral: {
-      50: '#f8fafc',
-      100: '#f1f5f9',
-      200: '#e2e8f0',
-      300: '#cbd5e1',
-      400: '#94a3b8',
-      500: '#64748b',
-      600: '#475569',
-      700: '#334155',
-      800: '#1e293b',
-      900: '#0f172a',
-      950: '#020617',
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#e5e5e5',
+      300: '#d4d4d4',
+      400: '#a3a3a3',
+      500: '#737373',
+      600: '#525252',
+      700: '#404040',
+      800: '#262626',
+      900: '#171717',
+      950: '#0a0a0a',
     },
-    // Semantic colors
+    // Semantic colors with modern vibrancy
     success: {
-      light: '#10b981',
-      DEFAULT: '#059669',
-      dark: '#047857',
+      light: '#34d399',
+      DEFAULT: '#10b981',
+      dark: '#059669',
+      glow: 'rgba(16, 185, 129, 0.4)',
     },
     warning: {
-      light: '#f59e0b',
-      DEFAULT: '#d97706',
-      dark: '#b45309',
+      light: '#fbbf24',
+      DEFAULT: '#f59e0b',
+      dark: '#d97706',
+      glow: 'rgba(245, 158, 11, 0.4)',
     },
     error: {
-      light: '#ef4444',
-      DEFAULT: '#dc2626',
-      dark: '#b91c1c',
+      light: '#f87171',
+      DEFAULT: '#ef4444',
+      dark: '#dc2626',
+      glow: 'rgba(239, 68, 68, 0.4)',
     },
     info: {
-      light: '#3b82f6',
-      DEFAULT: '#2563eb',
-      dark: '#1d4ed8',
+      light: '#60a5fa',
+      DEFAULT: '#3b82f6',
+      dark: '#2563eb',
+      glow: 'rgba(59, 130, 246, 0.4)',
     },
+  },
+
+  // Gradients - Modern gradient combinations
+  gradients: {
+    primary: 'linear-gradient(135deg, #a855f7 0%, #ec4899 100%)',
+    secondary: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
+    success: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+    danger: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+    twilight: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    ocean: 'linear-gradient(135deg, #2e3192 0%, #1bffff 100%)',
+    sunset: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)',
+    cosmic: 'linear-gradient(135deg, #a855f7 0%, #06b6d4 100%)',
   },
 
   // Spacing - Based on 4px grid
@@ -80,15 +109,16 @@ export const designTokens = {
     24: '6rem',      // 96px
   },
 
-  // Border radius
+  // Border radius - More pronounced for modern look
   radius: {
     none: '0',
-    sm: '0.25rem',   // 4px
-    DEFAULT: '0.5rem',    // 8px
-    md: '0.5rem',    // 8px
-    lg: '0.75rem',   // 12px
-    xl: '1rem',      // 16px
-    '2xl': '1.5rem', // 24px
+    sm: '0.375rem',   // 6px
+    DEFAULT: '0.75rem',    // 12px
+    md: '0.75rem',    // 12px
+    lg: '1rem',       // 16px
+    xl: '1.25rem',    // 20px
+    '2xl': '1.5rem',  // 24px
+    '3xl': '2rem',    // 32px
     full: '9999px',
   },
 
@@ -108,37 +138,60 @@ export const designTokens = {
     medium: '500',
     semibold: '600',
     bold: '700',
+    extrabold: '800',
   },
 
-  // Shadows - Elevation system
+  // Shadows - Modern elevation with colored glow effects
   shadow: {
     none: 'none',
-    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-    xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-    '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-    inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+    sm: '0 1px 3px 0 rgb(0 0 0 / 0.12), 0 1px 2px 0 rgb(0 0 0 / 0.24)',
+    DEFAULT: '0 3px 6px -1px rgb(0 0 0 / 0.12), 0 2px 4px -1px rgb(0 0 0 / 0.08)',
+    md: '0 6px 12px -2px rgb(0 0 0 / 0.16), 0 3px 6px -2px rgb(0 0 0 / 0.08)',
+    lg: '0 12px 24px -4px rgb(0 0 0 / 0.20), 0 6px 12px -4px rgb(0 0 0 / 0.12)',
+    xl: '0 24px 48px -8px rgb(0 0 0 / 0.24), 0 12px 24px -8px rgb(0 0 0 / 0.16)',
+    '2xl': '0 32px 64px -12px rgb(0 0 0 / 0.28)',
+    inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.06)',
+    // Colored glow shadows
+    glow: {
+      primary: '0 0 20px -5px rgba(168, 85, 247, 0.5), 0 8px 16px -4px rgba(168, 85, 247, 0.3)',
+      secondary: '0 0 20px -5px rgba(6, 182, 212, 0.5), 0 8px 16px -4px rgba(6, 182, 212, 0.3)',
+      success: '0 0 20px -5px rgba(16, 185, 129, 0.5), 0 8px 16px -4px rgba(16, 185, 129, 0.3)',
+      error: '0 0 20px -5px rgba(239, 68, 68, 0.5), 0 8px 16px -4px rgba(239, 68, 68, 0.3)',
+      warning: '0 0 20px -5px rgba(245, 158, 11, 0.5), 0 8px 16px -4px rgba(245, 158, 11, 0.3)',
+    },
   },
 
-  // Transitions - Consistent animation timing
+  // Backdrop blur - For glassmorphism
+  backdrop: {
+    blur: {
+      none: 'blur(0)',
+      sm: 'blur(4px)',
+      DEFAULT: 'blur(8px)',
+      md: 'blur(12px)',
+      lg: 'blur(16px)',
+      xl: 'blur(24px)',
+    },
+  },
+
+  // Transitions - Modern smooth animations
   transition: {
     // Duration
     duration: {
       instant: '75ms',
       fast: '150ms',
-      base: '200ms',
-      slow: '300ms',
+      base: '250ms',
+      slow: '350ms',
       slower: '500ms',
     },
-    // Timing functions
+    // Timing functions - Smoother, more natural
     timing: {
       linear: 'linear',
       in: 'cubic-bezier(0.4, 0, 1, 1)',
       out: 'cubic-bezier(0, 0, 0.2, 1)',
       inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
       spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)', // Bouncy
+      smooth: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', // Smooth ease
+      elastic: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)', // Elastic bounce
     },
   },
 
@@ -154,12 +207,13 @@ export const designTokens = {
     tooltip: 1070,
   },
 
-  // Focus ring - Consistent focus styling
+  // Focus ring - Modern purple focus
   focus: {
     ring: {
-      width: '2px',
+      width: '3px',
       offset: '2px',
-      color: 'rgb(59 130 246 / 0.5)', // primary-500 with opacity
+      color: 'rgba(168, 85, 247, 0.5)', // primary purple with opacity
+      glow: '0 0 0 3px rgba(168, 85, 247, 0.3)',
     },
   },
 

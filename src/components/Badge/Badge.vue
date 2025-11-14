@@ -9,22 +9,22 @@ import { computed } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 const badgeVariants = cva(
-  'inline-flex items-center justify-center font-medium transition-colors',
+  'inline-flex items-center justify-center font-semibold transition-all duration-250 shadow-sm',
   {
     variants: {
       variant: {
-        default: 'bg-secondary-700 text-white',
-        primary: 'bg-primary-500 text-white',
-        success: 'bg-green-600 text-white',
-        warning: 'bg-yellow-600 text-white',
-        danger: 'bg-red-600 text-white',
-        info: 'bg-blue-600 text-white',
-        outline: 'border-2 border-secondary-600 text-white bg-transparent',
+        default: 'bg-neutral-700/80 backdrop-blur-sm text-white border border-white/10',
+        primary: 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]',
+        success: 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-[0_0_12px_rgba(16,185,129,0.3)]',
+        warning: 'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-[0_0_12px_rgba(245,158,11,0.3)]',
+        danger: 'bg-gradient-to-br from-red-500 to-red-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.3)]',
+        info: 'bg-gradient-to-br from-cyan-500 to-cyan-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.3)]',
+        outline: 'border-2 border-white/30 text-white bg-transparent backdrop-blur-sm',
       },
       size: {
-        sm: 'px-2 py-0.5 text-xs rounded',
-        md: 'px-2.5 py-1 text-sm rounded-md',
-        lg: 'px-3 py-1.5 text-base rounded-lg',
+        sm: 'px-2.5 py-0.5 text-xs rounded-lg',
+        md: 'px-3 py-1 text-sm rounded-xl',
+        lg: 'px-4 py-1.5 text-base rounded-xl',
       },
       rounded: {
         true: 'rounded-full',

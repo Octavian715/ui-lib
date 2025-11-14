@@ -127,22 +127,26 @@ const textareaClass = computed(() => {
   }
 
   return cn(
-    // Base styles
-    'block w-full rounded-lg border-2 transition-all duration-200',
-    'bg-neutral-900 text-white placeholder-neutral-500',
+    // Modern textarea with subtle glass effect
+    'block w-full',
+    'rounded-xl border',
+    'bg-neutral-800/50 backdrop-blur-sm',
+    'text-white placeholder-neutral-500',
     'outline-none',
+    'transition-all duration-250',
 
-    // Focus styles
-    'focus:ring-2 focus:ring-primary-500 focus:ring-offset-0',
+    // Focus styles - Purple glow
+    'focus:ring-3 focus:ring-primary-500/50 focus:ring-offset-0',
+    'focus:bg-neutral-800/70',
 
     // Border colors
     props.error
-      ? 'border-error-500 focus:border-error-500'
-      : 'border-neutral-700 hover:border-neutral-600 focus:border-primary-500',
+      ? 'border-red-500 focus:border-red-400'
+      : 'border-white/10 hover:border-white/20 focus:border-primary-500/50',
 
     // States
-    props.disabled && 'opacity-50 cursor-not-allowed bg-neutral-900/50 hover:border-neutral-700',
-    props.readonly && 'cursor-default bg-neutral-800',
+    props.disabled && 'opacity-40 cursor-not-allowed bg-neutral-900/30 hover:border-white/10',
+    props.readonly && 'cursor-default bg-neutral-800/30',
 
     // Character counter spacing
     props.maxLength && props.showCount && 'pb-8',

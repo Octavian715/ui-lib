@@ -44,8 +44,10 @@
           >
             <li
               :class="[
-                active ? 'bg-secondary-700 text-white' : 'text-gray-300',
-                'relative cursor-pointer select-none py-2 pl-10 pr-4 transition-colors',
+                active ? 'bg-primary-500/20 text-white' : 'text-gray-300',
+                'relative cursor-pointer select-none',
+                'py-2.5 pl-10 pr-4 mx-1 rounded-lg',
+                'transition-all duration-200',
               ]"
             >
               <span
@@ -145,12 +147,18 @@ const buttonClass = computed(() => {
   }
 
   return cn(
-    'relative w-full cursor-pointer rounded-lg bg-secondary-800 text-left border transition-colors',
-    'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-secondary-900',
+    // Modern button with subtle glass effect
+    'relative w-full cursor-pointer',
+    'rounded-xl',
+    'bg-neutral-800/50 backdrop-blur-sm',
+    'text-left border',
+    'transition-all duration-250',
+    'focus:outline-none focus:ring-3 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-neutral-950',
+    'hover:bg-neutral-800/70',
     props.error
-      ? 'border-red-500'
-      : 'border-secondary-700 hover:border-secondary-600',
-    props.disabled && 'opacity-50 cursor-not-allowed',
+      ? 'border-red-500 hover:border-red-400'
+      : 'border-white/10 hover:border-white/20',
+    props.disabled && 'opacity-40 cursor-not-allowed',
     sizeClasses[props.size],
     props.class
   )
@@ -158,8 +166,14 @@ const buttonClass = computed(() => {
 
 const optionsClass = computed(() => {
   return cn(
-    'absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-secondary-800 border border-secondary-700',
-    'py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'
+    // Modern dropdown with glassmorphism
+    'absolute z-10 mt-2 max-h-60 w-full overflow-auto',
+    'rounded-xl',
+    'bg-neutral-900/95 backdrop-blur-xl',
+    'border border-white/10',
+    'py-2 text-base',
+    'shadow-[0_12px_24px_-4px_rgba(0,0,0,0.4),0_0_0_1px_rgba(168,85,247,0.1)]',
+    'focus:outline-none sm:text-sm'
   )
 })
 </script>

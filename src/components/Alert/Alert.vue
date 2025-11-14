@@ -71,14 +71,14 @@ const visible = ref(props.modelValue)
 
 const alertClass = computed(() => {
   const variantClasses = {
-    info: 'bg-blue-500/10 border-blue-500/50 text-blue-400',
-    success: 'bg-green-500/10 border-green-500/50 text-green-400',
-    warning: 'bg-yellow-500/10 border-yellow-500/50 text-yellow-400',
-    danger: 'bg-red-500/10 border-red-500/50 text-red-400',
+    info: 'bg-cyan-500/15 backdrop-blur-md border-cyan-500/40 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]',
+    success: 'bg-emerald-500/15 backdrop-blur-md border-emerald-500/40 text-emerald-300 shadow-[0_0_16px_rgba(16,185,129,0.15)]',
+    warning: 'bg-amber-500/15 backdrop-blur-md border-amber-500/40 text-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.15)]',
+    danger: 'bg-red-500/15 backdrop-blur-md border-red-500/40 text-red-300 shadow-[0_0_16px_rgba(239,68,68,0.15)]',
   }
 
   return cn(
-    'rounded-lg border-2 p-4',
+    'rounded-2xl border p-5',
     variantClasses[props.variant],
     props.class
   )

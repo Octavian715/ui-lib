@@ -42,10 +42,10 @@ const emit = defineEmits<{
 
 const cardClass = computed(() => {
   const variantClasses = {
-    default: 'bg-secondary-800 border border-secondary-700',
-    bordered: 'bg-transparent border-2 border-secondary-700',
-    elevated: 'bg-secondary-800 border border-secondary-700 shadow-xl',
-    flat: 'bg-secondary-800',
+    default: 'bg-neutral-800/50 backdrop-blur-sm border border-white/10',
+    bordered: 'bg-transparent border-2 border-white/20',
+    elevated: 'bg-neutral-800/70 backdrop-blur-md border border-white/10 shadow-[0_12px_24px_-4px_rgba(0,0,0,0.3)]',
+    flat: 'bg-neutral-800/50',
   }
 
   const paddingClasses = {
@@ -56,10 +56,11 @@ const cardClass = computed(() => {
   }
 
   return cn(
-    'rounded-lg transition-all duration-200',
+    // Modern card with rounded corners and smooth transitions
+    'rounded-2xl transition-all duration-300',
     variantClasses[props.variant],
-    props.hoverable && 'hover:border-secondary-600 hover:shadow-lg',
-    props.clickable && 'cursor-pointer hover:scale-[1.02]',
+    props.hoverable && 'hover:border-white/20 hover:shadow-[0_12px_24px_-4px_rgba(168,85,247,0.2)]',
+    props.clickable && 'cursor-pointer hover:scale-[1.02] hover:-translate-y-1',
     paddingClasses[props.padding],
     props.class
   )
@@ -74,7 +75,7 @@ const headerClass = computed(() => {
   }
 
   return cn(
-    'border-b border-secondary-700',
+    'border-b border-white/10',
     paddingClasses[props.padding]
   )
 })
@@ -99,7 +100,7 @@ const footerClass = computed(() => {
   }
 
   return cn(
-    'border-t border-secondary-700',
+    'border-t border-white/10',
     paddingClasses[props.padding]
   )
 })

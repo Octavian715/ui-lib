@@ -10,7 +10,7 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black/70" />
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -128,7 +128,15 @@ const modalClass = computed(() => {
   }
 
   return cn(
-    'w-full transform overflow-hidden rounded-lg bg-secondary-900 border border-secondary-700 p-6 text-left align-middle shadow-xl transition-all',
+    // Modern glassmorphism modal
+    'w-full transform overflow-hidden',
+    'rounded-2xl',
+    'bg-neutral-900/95 backdrop-blur-xl',
+    'border border-white/10',
+    'p-8',
+    'text-left align-middle',
+    'shadow-[0_24px_48px_-8px_rgba(0,0,0,0.5),0_0_0_1px_rgba(168,85,247,0.1)]',
+    'transition-all duration-300',
     sizeClasses[props.size],
     props.class
   )

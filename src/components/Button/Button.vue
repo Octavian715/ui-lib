@@ -1,13 +1,14 @@
 <template>
   <button
     :class="buttonClass"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :type="type"
     @click="handleClick"
   >
-    <span v-if="loading" class="mr-2">
+    <!-- Loading Spinner -->
+    <span v-if="loading" :class="iconClass">
       <svg
-        class="animate-spin h-4 w-4"
+        class="animate-spin"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -27,7 +28,19 @@
         />
       </svg>
     </span>
+
+    <!-- Icon Left -->
+    <span v-else-if="$slots['icon-left']" :class="iconClass">
+      <slot name="icon-left" />
+    </span>
+
+    <!-- Button Content -->
     <slot />
+
+    <!-- Icon Right -->
+    <span v-if="$slots['icon-right'] && !loading" :class="iconClass">
+      <slot name="icon-right" />
+    </span>
   </button>
 </template>
 
@@ -58,9 +71,19 @@ const buttonClass = computed(() =>
   buttonVariants({
     variant: props.variant,
     size: props.size,
+    fullWidth: props.fullWidth,
     class: props.class
   })
 )
+
+const iconClass = computed(() => {
+  const sizeClasses = {
+    sm: 'h-4 w-4',
+    md: 'h-5 w-5',
+    lg: 'h-6 w-6',
+  }
+  return sizeClasses[props.size || 'md']
+})
 
 const handleClick = (event: MouseEvent) => {
   if (!props.disabled && !props.loading) {

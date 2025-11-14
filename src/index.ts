@@ -13,9 +13,10 @@ export { Badge } from './components/Badge'
 export { Alert } from './components/Alert'
 export { Switch } from './components/Switch'
 export { Spinner } from './components/Spinner'
-export { Avatar } from './components/Avatar'
-export { Radio } from './components/Radio'
+export { Avatar, AvatarGroup } from './components/Avatar'
+export { Radio, RadioGroup } from './components/Radio'
 export { Progress } from './components/Progress'
+export { Tabs, TabPanel } from './components/Tabs'
 
 // Export types
 export type { ButtonVariantProps } from './components/Button/buttonVariants'
@@ -39,9 +40,10 @@ import { Badge } from './components/Badge'
 import { Alert } from './components/Alert'
 import { Switch } from './components/Switch'
 import { Spinner } from './components/Spinner'
-import { Avatar } from './components/Avatar'
-import { Radio } from './components/Radio'
+import { Avatar, AvatarGroup } from './components/Avatar'
+import { Radio, RadioGroup } from './components/Radio'
 import { Progress } from './components/Progress'
+import { Tabs, TabPanel } from './components/Tabs'
 
 // Component registration plugin
 export const UILibPlugin: Plugin = {
@@ -59,8 +61,12 @@ export const UILibPlugin: Plugin = {
     app.component('UISwitch', Switch)
     app.component('UISpinner', Spinner)
     app.component('UIAvatar', Avatar)
+    app.component('UIAvatarGroup', AvatarGroup)
     app.component('UIRadio', Radio)
+    app.component('UIRadioGroup', RadioGroup)
     app.component('UIProgress', Progress)
+    app.component('UITabs', Tabs)
+    app.component('UITabPanel', TabPanel)
   }
 }
 

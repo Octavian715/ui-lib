@@ -25,6 +25,13 @@ export { Breadcrumb } from './components/Breadcrumb'
 export { Pagination } from './components/Pagination'
 export { Table } from './components/Table'
 export type { TableColumn } from './components/Table'
+export { Divider } from './components/Divider'
+export { Tag } from './components/Tag'
+export { Rating } from './components/Rating'
+export { Drawer } from './components/Drawer'
+export { Dialog } from './components/Dialog'
+export { Stepper } from './components/Stepper'
+export type { Step } from './components/Stepper'
 
 // Export composables
 export { useToast } from './composables/useToast'
@@ -63,6 +70,12 @@ import { Accordion, AccordionItem } from './components/Accordion'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Pagination } from './components/Pagination'
 import { Table } from './components/Table'
+import { Divider } from './components/Divider'
+import { Tag } from './components/Tag'
+import { Rating } from './components/Rating'
+import { Drawer } from './components/Drawer'
+import { Dialog } from './components/Dialog'
+import { Stepper } from './components/Stepper'
 
 // Component registration plugin
 export const UILibPlugin: Plugin = {
@@ -95,6 +108,12 @@ export const UILibPlugin: Plugin = {
     app.component('UIBreadcrumb', Breadcrumb)
     app.component('UIPagination', Pagination)
     app.component('UITable', Table)
+    app.component('UIDivider', Divider)
+    app.component('UITag', Tag)
+    app.component('UIRating', Rating)
+    app.component('UIDrawer', Drawer)
+    app.component('UIDialog', Dialog)
+    app.component('UIStepper', Stepper)
   }
 }
 

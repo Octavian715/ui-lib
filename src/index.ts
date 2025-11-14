@@ -32,6 +32,8 @@ export { Drawer } from './components/Drawer'
 export { Dialog } from './components/Dialog'
 export { Stepper } from './components/Stepper'
 export type { Step } from './components/Stepper'
+export { Slider } from './components/Slider'
+export { DatePicker } from './components/DatePicker'
 
 // Export composables
 export { useToast } from './composables/useToast'
@@ -76,6 +78,8 @@ import { Rating } from './components/Rating'
 import { Drawer } from './components/Drawer'
 import { Dialog } from './components/Dialog'
 import { Stepper } from './components/Stepper'
+import { Slider } from './components/Slider'
+import { DatePicker } from './components/DatePicker'
 
 // Component registration plugin
 export const UILibPlugin: Plugin = {
@@ -114,6 +118,8 @@ export const UILibPlugin: Plugin = {
     app.component('UIDrawer', Drawer)
     app.component('UIDialog', Dialog)
     app.component('UIStepper', Stepper)
+    app.component('UISlider', Slider)
+    app.component('UIDatePicker', DatePicker)
   }
 }
 

@@ -10,14 +10,28 @@
         :disabled="disabled"
         :required="required"
         :class="radioClass"
-        :aria-describedby="error && errorMessage ? `${inputId}-error` : undefined"
+        :aria-describedby="error && errorMessage ? `${inputId}-error` : description ? `${inputId}-description` : undefined"
         v-bind="$attrs"
       />
-      <span :class="customRadioClass">
+
+      <!-- Custom Radio Indicator -->
+      <span v-if="variant === 'default'" :class="customRadioClass">
         <span :class="dotClass" />
       </span>
-      <span v-if="label || $slots.default" :class="labelClass">
-        <slot>{{ label }}</slot>
+
+      <!-- Label & Description -->
+      <span v-if="label || description || $slots.default || $slots.description" :class="contentWrapperClass">
+        <span v-if="label || $slots.default" :class="labelClass">
+          <slot>{{ label }}</slot>
+        </span>
+        <span v-if="description || $slots.description" :id="`${inputId}-description`" :class="descriptionClass">
+          <slot name="description">{{ description }}</slot>
+        </span>
+      </span>
+
+      <!-- Icon slot for card variant -->
+      <span v-if="$slots.icon && variant === 'card'" :class="iconClass">
+        <slot name="icon" />
       </span>
     </label>
 
@@ -47,9 +61,12 @@ interface RadioProps {
   value: string | number | boolean
   name?: string
   label?: string
+  description?: string
   hint?: string
   errorMessage?: string
+  variant?: 'default' | 'card' | 'button'
   size?: 'sm' | 'md' | 'lg'
+  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info'
   disabled?: boolean
   required?: boolean
   error?: boolean
@@ -57,7 +74,9 @@ interface RadioProps {
 }
 
 const props = withDefaults(defineProps<RadioProps>(), {
+  variant: 'default',
   size: 'md',
+  color: 'primary',
   disabled: false,
   required: false,
   error: false,
@@ -65,6 +84,7 @@ const props = withDefaults(defineProps<RadioProps>(), {
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | number | boolean]
+  change: [value: string | number | boolean]
 }>()
 
 defineOptions({
@@ -78,22 +98,102 @@ const checkedValue = computed({
   set: (value) => {
     if (value !== undefined) {
       emit('update:modelValue', value)
+      emit('change', value)
     }
   },
 })
 
+const colorClasses = computed(() => {
+  const colors = {
+    primary: {
+      border: 'peer-checked:border-primary-500',
+      bg: 'peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-indigo-600',
+      ring: 'peer-focus-visible:ring-primary-500/50',
+      cardBorder: 'peer-checked:border-primary-500/50',
+      cardBg: 'peer-checked:bg-primary-500/10',
+    },
+    success: {
+      border: 'peer-checked:border-green-500',
+      bg: 'peer-checked:bg-gradient-to-r peer-checked:from-green-600 peer-checked:to-emerald-600',
+      ring: 'peer-focus-visible:ring-green-500/50',
+      cardBorder: 'peer-checked:border-green-500/50',
+      cardBg: 'peer-checked:bg-green-500/10',
+    },
+    warning: {
+      border: 'peer-checked:border-amber-500',
+      bg: 'peer-checked:bg-gradient-to-r peer-checked:from-amber-600 peer-checked:to-orange-600',
+      ring: 'peer-focus-visible:ring-amber-500/50',
+      cardBorder: 'peer-checked:border-amber-500/50',
+      cardBg: 'peer-checked:bg-amber-500/10',
+    },
+    danger: {
+      border: 'peer-checked:border-red-500',
+      bg: 'peer-checked:bg-gradient-to-r peer-checked:from-red-600 peer-checked:to-rose-600',
+      ring: 'peer-focus-visible:ring-red-500/50',
+      cardBorder: 'peer-checked:border-red-500/50',
+      cardBg: 'peer-checked:bg-red-500/10',
+    },
+    info: {
+      border: 'peer-checked:border-cyan-500',
+      bg: 'peer-checked:bg-gradient-to-r peer-checked:from-cyan-600 peer-checked:to-blue-600',
+      ring: 'peer-focus-visible:ring-cyan-500/50',
+      cardBorder: 'peer-checked:border-cyan-500/50',
+      cardBg: 'peer-checked:bg-cyan-500/10',
+    },
+  }
+  return colors[props.color]
+})
+
 const wrapperClass = computed(() => cn('w-full', props.class))
 
-const labelWrapperClass = computed(() =>
-  cn(
+const labelWrapperClass = computed(() => {
+  if (props.variant === 'card') {
+    return cn(
+      'relative flex items-start gap-3',
+      'p-4 rounded-lg border-2',
+      'transition-all duration-200',
+      'bg-neutral-900/30 backdrop-blur-sm',
+      props.error
+        ? 'border-red-500/50'
+        : 'border-white/10',
+      colorClasses.value.cardBorder,
+      colorClasses.value.cardBg,
+      props.disabled
+        ? 'cursor-not-allowed opacity-50'
+        : 'cursor-pointer hover:border-white/20 hover:bg-white/5',
+      'peer-focus-visible:ring-2',
+      colorClasses.value.ring,
+      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950'
+    )
+  }
+
+  if (props.variant === 'button') {
+    return cn(
+      'relative flex items-center justify-center gap-2',
+      'px-4 py-2.5 rounded-lg border-2',
+      'transition-all duration-200',
+      'bg-neutral-900/30 backdrop-blur-sm',
+      props.error
+        ? 'border-red-500/50'
+        : 'border-white/10',
+      colorClasses.value.cardBorder,
+      colorClasses.value.cardBg,
+      props.disabled
+        ? 'cursor-not-allowed opacity-50'
+        : 'cursor-pointer hover:border-white/20 hover:bg-white/5',
+      'peer-focus-visible:ring-2',
+      colorClasses.value.ring,
+      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950'
+    )
+  }
+
+  return cn(
     'relative flex items-start gap-3',
     props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
   )
-)
+})
 
-const radioClass = computed(() =>
-  cn('sr-only peer')
-)
+const radioClass = computed(() => cn('sr-only peer'))
 
 const customRadioClass = computed(() => {
   const sizeClasses = {
@@ -112,10 +212,12 @@ const customRadioClass = computed(() => {
       ? 'border-red-500/50 peer-focus:border-red-400'
       : 'border-white/20 peer-hover:border-primary-500/40 peer-focus:border-primary-500',
     // Checked state
-    'peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-indigo-600',
-    'peer-checked:border-primary-500',
+    colorClasses.value.bg,
+    colorClasses.value.border,
     // Focus ring
-    'peer-focus-visible:ring-2 peer-focus-visible:ring-primary-500/50 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950',
+    'peer-focus-visible:ring-2',
+    colorClasses.value.ring,
+    'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950',
     // Disabled
     props.disabled && 'bg-neutral-900/30 peer-hover:border-white/20',
     sizeClasses[props.size]
@@ -132,10 +234,17 @@ const dotClass = computed(() => {
   return cn(
     'rounded-full bg-white',
     'scale-0 peer-checked:scale-100',
-    'transition-transform duration-200',
+    'transition-transform duration-200 ease-out',
     sizeClasses[props.size]
   )
 })
+
+const contentWrapperClass = computed(() =>
+  cn(
+    'flex flex-col gap-0.5',
+    props.variant === 'button' && 'flex-row items-center gap-2'
+  )
+)
 
 const labelClass = computed(() => {
   const sizeClasses = {
@@ -145,17 +254,36 @@ const labelClass = computed(() => {
   }
 
   return cn(
-    'text-neutral-200 select-none',
+    'text-neutral-200 select-none font-medium',
     'peer-checked:text-white',
+    'transition-colors duration-200',
     sizeClasses[props.size]
   )
 })
 
-const hintClass = computed(() =>
-  cn('mt-1.5 ml-8 text-sm text-neutral-400')
+const descriptionClass = computed(() =>
+  cn(
+    'text-sm text-neutral-400 select-none',
+    'peer-checked:text-neutral-300',
+    'transition-colors duration-200'
+  )
 )
 
-const errorClass = computed(() =>
-  cn('mt-1.5 ml-8 text-sm text-error-500 flex items-center gap-1')
+const iconClass = computed(() =>
+  cn(
+    'flex-shrink-0 text-neutral-400',
+    'peer-checked:text-white',
+    'transition-colors duration-200'
+  )
 )
+
+const hintClass = computed(() => {
+  const margin = props.variant === 'default' ? 'ml-8' : 'ml-0'
+  return cn('mt-1.5 text-sm text-neutral-400', margin)
+})
+
+const errorClass = computed(() => {
+  const margin = props.variant === 'default' ? 'ml-8' : 'ml-0'
+  return cn('mt-1.5 text-sm text-error-500 flex items-center gap-1', margin)
+})
 </script>

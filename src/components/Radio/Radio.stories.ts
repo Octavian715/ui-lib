@@ -1,15 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
 import Radio from './Radio.vue'
+import RadioGroup from './RadioGroup.vue'
 
 const meta = {
   title: 'Components/Radio',
   component: Radio,
   tags: ['autodocs'],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'card', 'button'],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'success', 'warning', 'danger', 'info'],
     },
     disabled: {
       control: 'boolean',
@@ -30,171 +39,317 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { Radio },
     setup() {
       const selected = ref('option1')
-      return { args, selected }
+      return { selected }
     },
     template: `
-      <div class="w-96">
+      <div class="w-96 space-y-3">
         <Radio v-model="selected" value="option1" label="Option 1" name="default" />
+        <Radio v-model="selected" value="option2" label="Option 2" name="default" />
+        <Radio v-model="selected" value="option3" label="Option 3" name="default" />
         <p class="mt-4 text-sm text-neutral-400">Selected: {{ selected }}</p>
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
 }
 
-export const Group: Story = {
-  render: (args) => ({
+export const WithDescription: Story = {
+  render: () => ({
     components: { Radio },
     setup() {
-      const selected = ref('react')
-      return { args, selected }
+      const plan = ref('basic')
+      return { plan }
     },
     template: `
       <div class="w-96 space-y-3">
-        <Radio v-model="selected" value="react" label="React" name="framework" />
-        <Radio v-model="selected" value="vue" label="Vue.js" name="framework" />
-        <Radio v-model="selected" value="angular" label="Angular" name="framework" />
-        <Radio v-model="selected" value="svelte" label="Svelte" name="framework" />
-        <p class="mt-4 pt-4 border-t border-white/10 text-sm text-neutral-400">
-          Selected: {{ selected }}
-        </p>
+        <Radio
+          v-model="plan"
+          value="basic"
+          label="Basic Plan"
+          description="Perfect for individuals and small projects"
+          name="plan"
+        />
+        <Radio
+          v-model="plan"
+          value="pro"
+          label="Pro Plan"
+          description="For professionals and growing teams"
+          name="plan"
+        />
+        <Radio
+          v-model="plan"
+          value="enterprise"
+          label="Enterprise Plan"
+          description="Advanced features for large organizations"
+          name="plan"
+        />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
 }
 
-export const WithHint: Story = {
-  render: (args) => ({
+export const CardVariant: Story = {
+  render: () => ({
     components: { Radio },
     setup() {
-      const selected = ref('email')
-      return { args, selected }
+      const deployment = ref('vercel')
+      return { deployment }
     },
     template: `
-      <div class="w-96 space-y-4">
+      <div class="w-96 space-y-3">
         <Radio
-          v-model="selected"
-          value="email"
-          label="Email notifications"
-          hint="Receive notifications via email"
-          name="notification"
+          v-model="deployment"
+          value="vercel"
+          label="Vercel"
+          description="Deploy with Vercel for optimal performance"
+          variant="card"
+          name="deployment"
         />
         <Radio
-          v-model="selected"
-          value="sms"
-          label="SMS notifications"
-          hint="Receive notifications via SMS"
-          name="notification"
+          v-model="deployment"
+          value="netlify"
+          label="Netlify"
+          description="Deploy with Netlify for simplicity"
+          variant="card"
+          name="deployment"
         />
         <Radio
-          v-model="selected"
-          value="push"
-          label="Push notifications"
-          hint="Receive push notifications on your device"
-          name="notification"
+          v-model="deployment"
+          value="aws"
+          label="AWS"
+          description="Deploy with AWS for full control"
+          variant="card"
+          name="deployment"
         />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
+}
+
+export const ButtonVariant: Story = {
+  render: () => ({
+    components: { Radio },
+    setup() {
+      const size = ref('md')
+      return { size }
+    },
+    template: `
+      <div class="flex flex-wrap gap-2">
+        <Radio v-model="size" value="sm" label="Small" variant="button" name="size" />
+        <Radio v-model="size" value="md" label="Medium" variant="button" name="size" />
+        <Radio v-model="size" value="lg" label="Large" variant="button" name="size" />
+        <Radio v-model="size" value="xl" label="Extra Large" variant="button" name="size" />
+      </div>
+    `,
+  }),
+  args: { value: '' },
+}
+
+export const Colors: Story = {
+  render: () => ({
+    components: { Radio },
+    setup() {
+      const primary = ref('a')
+      const success = ref('a')
+      const warning = ref('a')
+      const danger = ref('a')
+      const info = ref('a')
+      return { primary, success, warning, danger, info }
+    },
+    template: `
+      <div class="w-96 space-y-6">
+        <div>
+          <p class="text-sm text-neutral-400 mb-2">Primary</p>
+          <Radio v-model="primary" value="a" label="Primary color" color="primary" name="primary" />
+        </div>
+        <div>
+          <p class="text-sm text-neutral-400 mb-2">Success</p>
+          <Radio v-model="success" value="a" label="Success color" color="success" name="success" />
+        </div>
+        <div>
+          <p class="text-sm text-neutral-400 mb-2">Warning</p>
+          <Radio v-model="warning" value="a" label="Warning color" color="warning" name="warning" />
+        </div>
+        <div>
+          <p class="text-sm text-neutral-400 mb-2">Danger</p>
+          <Radio v-model="danger" value="a" label="Danger color" color="danger" name="danger" />
+        </div>
+        <div>
+          <p class="text-sm text-neutral-400 mb-2">Info</p>
+          <Radio v-model="info" value="a" label="Info color" color="info" name="info" />
+        </div>
+      </div>
+    `,
+  }),
+  args: { value: '' },
 }
 
 export const Sizes: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { Radio },
     setup() {
-      const selectedSm = ref('sm')
-      const selectedMd = ref('md')
-      const selectedLg = ref('lg')
-      return { args, selectedSm, selectedMd, selectedLg }
+      const sm = ref('a')
+      const md = ref('a')
+      const lg = ref('a')
+      return { sm, md, lg }
     },
     template: `
       <div class="w-96 space-y-4">
-        <Radio v-model="selectedSm" value="sm" label="Small radio" size="sm" name="size-sm" />
-        <Radio v-model="selectedMd" value="md" label="Medium radio" size="md" name="size-md" />
-        <Radio v-model="selectedLg" value="lg" label="Large radio" size="lg" name="size-lg" />
+        <Radio v-model="sm" value="a" label="Small radio" size="sm" name="sm" />
+        <Radio v-model="md" value="a" label="Medium radio" size="md" name="md" />
+        <Radio v-model="lg" value="a" label="Large radio" size="lg" name="lg" />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
 }
 
-export const Disabled: Story = {
-  render: (args) => ({
+export const WithHint: Story = {
+  render: () => ({
     components: { Radio },
     setup() {
-      const selected = ref('enabled')
-      return { args, selected }
+      const newsletter = ref('weekly')
+      return { newsletter }
     },
     template: `
       <div class="w-96 space-y-3">
-        <Radio v-model="selected" value="enabled" label="Enabled option" name="disabled" />
-        <Radio v-model="selected" value="disabled1" label="Disabled unchecked" disabled name="disabled" />
-        <Radio v-model="selected" value="disabled2" label="Disabled checked" disabled name="disabled" />
+        <Radio
+          v-model="newsletter"
+          value="daily"
+          label="Daily digest"
+          hint="Receive updates every day"
+          name="newsletter"
+        />
+        <Radio
+          v-model="newsletter"
+          value="weekly"
+          label="Weekly digest"
+          hint="Receive updates every week"
+          name="newsletter"
+        />
+        <Radio
+          v-model="newsletter"
+          value="monthly"
+          label="Monthly digest"
+          hint="Receive updates every month"
+          name="newsletter"
+        />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
+}
+
+export const Disabled: Story = {
+  render: () => ({
+    components: { Radio },
+    setup() {
+      const selected = ref('option1')
+      return { selected }
+    },
+    template: `
+      <div class="w-96 space-y-3">
+        <Radio v-model="selected" value="option1" label="Enabled option" name="disabled" />
+        <Radio v-model="selected" value="option2" label="Disabled option" disabled name="disabled" />
+        <Radio v-model="selected" value="option3" label="Disabled checked" disabled name="disabled" />
+      </div>
+    `,
+  }),
+  args: { value: '' },
 }
 
 export const WithError: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { Radio },
     setup() {
       const selected = ref('')
-      return { args, selected }
+      return { selected }
     },
     template: `
       <div class="w-96 space-y-3">
         <Radio
           v-model="selected"
-          value="yes"
-          label="Yes, I agree"
-          error
-          errorMessage="You must accept the terms"
+          value="option1"
+          label="Option 1"
           name="error"
+          error
+          error-message="Please select an option"
         />
-        <Radio v-model="selected" value="no" label="No, I decline" error name="error" />
+        <Radio
+          v-model="selected"
+          value="option2"
+          label="Option 2"
+          name="error"
+          error
+        />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
 }
 
-export const CustomContent: Story = {
-  render: (args) => ({
+export const WithRadioGroup: Story = {
+  render: () => ({
+    components: { RadioGroup, Radio },
+    setup() {
+      const notification = ref('email')
+      return { notification }
+    },
+    template: `
+      <RadioGroup v-model="notification" label="Notification method" class="w-96">
+        <Radio value="email" label="Email" description="Get notified via email" />
+        <Radio value="sms" label="SMS" description="Get notified via SMS" />
+        <Radio value="push" label="Push" description="Get notified via push notification" />
+      </RadioGroup>
+    `,
+  }),
+  args: { value: '' },
+}
+
+export const CardVariantWithColors: Story = {
+  render: () => ({
     components: { Radio },
     setup() {
-      const selected = ref('pro')
-      return { args, selected }
+      const priority = ref('medium')
+      return { priority }
     },
     template: `
       <div class="w-96 space-y-3">
-        <Radio v-model="selected" value="free" name="plan">
-          <div>
-            <p class="font-semibold text-white">Free Plan</p>
-            <p class="text-sm text-neutral-400">Basic features for individuals</p>
-          </div>
-        </Radio>
-        <Radio v-model="selected" value="pro" name="plan">
-          <div>
-            <p class="font-semibold text-white">Pro Plan</p>
-            <p class="text-sm text-neutral-400">Advanced features for professionals</p>
-          </div>
-        </Radio>
-        <Radio v-model="selected" value="enterprise" name="plan">
-          <div>
-            <p class="font-semibold text-white">Enterprise Plan</p>
-            <p class="text-sm text-neutral-400">Custom solutions for large teams</p>
-          </div>
-        </Radio>
+        <Radio
+          v-model="priority"
+          value="low"
+          label="Low Priority"
+          description="Can be done when time allows"
+          variant="card"
+          color="info"
+          name="priority"
+        />
+        <Radio
+          v-model="priority"
+          value="medium"
+          label="Medium Priority"
+          description="Should be completed soon"
+          variant="card"
+          color="warning"
+          name="priority"
+        />
+        <Radio
+          v-model="priority"
+          value="high"
+          label="High Priority"
+          description="Needs immediate attention"
+          variant="card"
+          color="danger"
+          name="priority"
+        />
       </div>
     `,
   }),
-  args: { value: "" },
+  args: { value: '' },
 }

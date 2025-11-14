@@ -20,6 +20,9 @@ export type { ButtonVariantProps } from './components/Button/buttonVariants'
 // Export utilities
 export { cn } from './utils/cn'
 
+// Export theme system
+export * from './theme'
+
 // Import components for plugin
 import { Button } from './components/Button'
 import { Modal } from './components/Modal'

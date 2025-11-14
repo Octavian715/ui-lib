@@ -19,14 +19,17 @@
     <p
       v-if="error && errorMessage"
       :id="`${inputId}-error`"
-      class="mt-1 text-sm text-red-500"
+      class="mt-1.5 text-sm text-error-500 flex items-center gap-1"
     >
+      <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+      </svg>
       {{ errorMessage }}
     </p>
 
     <p
       v-else-if="hint"
-      class="mt-1 text-sm text-gray-400"
+      class="mt-1.5 text-sm text-neutral-400"
     >
       {{ hint }}
     </p>
@@ -75,7 +78,7 @@ const wrapperClass = computed(() => cn('w-full', props.class))
 
 const labelWrapperClass = computed(() =>
   cn(
-    'flex items-start gap-2 cursor-pointer',
+    'flex items-start gap-2.5 cursor-pointer',
     props.disabled && 'cursor-not-allowed opacity-50'
   )
 )
@@ -88,13 +91,28 @@ const checkboxClass = computed(() => {
   }
 
   return cn(
-    'rounded border-2 text-primary-500 cursor-pointer transition-all',
-    'focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-secondary-900',
+    // Base styles
+    'rounded border-2 cursor-pointer transition-all duration-200',
+    'outline-none',
+
+    // Focus styles
+    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900',
+
+    // Border and background
     props.error
-      ? 'border-red-500 bg-red-500/10'
-      : 'border-secondary-600 bg-secondary-800',
-    'checked:bg-primary-500 checked:border-primary-500',
+      ? 'border-error-500 bg-error-500/10'
+      : 'border-neutral-600 bg-neutral-900',
+
+    // Checked state
+    'checked:bg-primary-600 checked:border-primary-600',
+    'checked:hover:bg-primary-700 checked:hover:border-primary-700',
+
+    // Hover state
+    'hover:border-neutral-500',
+
+    // Disabled state
     'disabled:cursor-not-allowed disabled:opacity-50',
+
     sizeClasses[props.size]
   )
 })

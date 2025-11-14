@@ -3,14 +3,14 @@
     <label
       v-if="label"
       :for="inputId"
-      class="block text-sm font-medium text-gray-300 mb-1"
+      class="block text-sm font-medium text-neutral-300 mb-1.5"
     >
       {{ label }}
-      <span v-if="required" class="text-red-500 ml-1">*</span>
+      <span v-if="required" class="text-error-500 ml-1">*</span>
     </label>
 
     <div class="relative">
-      <div v-if="$slots.prefix" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      <div v-if="$slots.prefix" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-neutral-400">
         <slot name="prefix" />
       </div>
 
@@ -35,28 +35,34 @@
         <button
           v-if="clearable && inputValue && !disabled"
           type="button"
-          class="text-gray-400 hover:text-gray-300 transition-colors"
+          class="text-neutral-400 hover:text-neutral-300 transition-colors duration-150 focus:outline-none focus-visible:text-primary-500"
+          aria-label="Clear input"
           @click="clearInput"
         >
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
           </svg>
         </button>
-        <slot v-else name="suffix" />
+        <div v-else class="text-neutral-400">
+          <slot name="suffix" />
+        </div>
       </div>
     </div>
 
     <p
       v-if="error && errorMessage"
       :id="`${inputId}-error`"
-      class="mt-1 text-sm text-red-500"
+      class="mt-1.5 text-sm text-error-500 flex items-center gap-1"
     >
+      <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+      </svg>
       {{ errorMessage }}
     </p>
 
     <p
       v-else-if="hint"
-      class="mt-1 text-sm text-gray-400"
+      class="mt-1.5 text-sm text-neutral-400"
     >
       {{ hint }}
     </p>
@@ -115,22 +121,34 @@ const wrapperClass = computed(() => cn('w-full', props.class))
 
 const inputClass = computed(() => {
   const sizeClasses = {
-    sm: 'py-1.5 px-3 text-sm',
-    md: 'py-2 px-4 text-base',
-    lg: 'py-3 px-4 text-lg',
+    sm: 'h-8 px-3 text-sm',
+    md: 'h-10 px-4 text-base',
+    lg: 'h-12 px-5 text-lg',
   }
 
   return cn(
-    'block w-full rounded-lg border transition-colors bg-secondary-800 text-white placeholder-gray-500',
-    'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-secondary-900',
+    // Base styles
+    'block w-full rounded-lg border-2 transition-all duration-200',
+    'bg-neutral-900 text-white placeholder-neutral-500',
+    'outline-none',
+
+    // Focus styles
+    'focus:ring-2 focus:ring-primary-500 focus:ring-offset-0',
+
+    // Border colors
     props.error
-      ? 'border-red-500 focus:border-red-500'
-      : 'border-secondary-700 hover:border-secondary-600 focus:border-primary-500',
-    props.disabled && 'opacity-50 cursor-not-allowed bg-secondary-800/50',
-    props.readonly && 'cursor-default',
-    sizeClasses[props.size],
-    'has-[prefix]:pl-10',
-    'has-[suffix]:pr-10'
+      ? 'border-error-500 focus:border-error-500'
+      : 'border-neutral-700 hover:border-neutral-600 focus:border-primary-500',
+
+    // States
+    props.disabled && 'opacity-50 cursor-not-allowed bg-neutral-900/50 hover:border-neutral-700',
+    props.readonly && 'cursor-default bg-neutral-800',
+
+    // Padding adjustments for icons
+    props.$slots?.prefix && 'pl-10',
+    (props.$slots?.suffix || props.clearable) && 'pr-10',
+
+    sizeClasses[props.size]
   )
 })
 

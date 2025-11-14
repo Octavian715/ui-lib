@@ -17,6 +17,16 @@ export { Avatar, AvatarGroup } from './components/Avatar'
 export { Radio, RadioGroup } from './components/Radio'
 export { Progress } from './components/Progress'
 export { Tabs, TabPanel } from './components/Tabs'
+export { Select } from './components/Select'
+export { Toast, ToastContainer } from './components/Toast'
+export { Skeleton } from './components/Skeleton'
+export { Accordion, AccordionItem } from './components/Accordion'
+export { Breadcrumb } from './components/Breadcrumb'
+export { Pagination } from './components/Pagination'
+
+// Export composables
+export { useToast } from './composables/useToast'
+export type { Toast as ToastType } from './composables/useToast'
 
 // Export types
 export type { ButtonVariantProps } from './components/Button/buttonVariants'
@@ -44,6 +54,12 @@ import { Avatar, AvatarGroup } from './components/Avatar'
 import { Radio, RadioGroup } from './components/Radio'
 import { Progress } from './components/Progress'
 import { Tabs, TabPanel } from './components/Tabs'
+import { Select } from './components/Select'
+import { Toast, ToastContainer } from './components/Toast'
+import { Skeleton } from './components/Skeleton'
+import { Accordion, AccordionItem } from './components/Accordion'
+import { Breadcrumb } from './components/Breadcrumb'
+import { Pagination } from './components/Pagination'
 
 // Component registration plugin
 export const UILibPlugin: Plugin = {
@@ -67,6 +83,14 @@ export const UILibPlugin: Plugin = {
     app.component('UIProgress', Progress)
     app.component('UITabs', Tabs)
     app.component('UITabPanel', TabPanel)
+    app.component('UISelect', Select)
+    app.component('UIToast', Toast)
+    app.component('UIToastContainer', ToastContainer)
+    app.component('UISkeleton', Skeleton)
+    app.component('UIAccordion', Accordion)
+    app.component('UIAccordionItem', AccordionItem)
+    app.component('UIBreadcrumb', Breadcrumb)
+    app.component('UIPagination', Pagination)
   }
 }
 

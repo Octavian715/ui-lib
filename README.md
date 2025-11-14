@@ -15,11 +15,23 @@ A modern, fully-featured UI component library built with Vue 3, TypeScript, Tail
 
 ## Components
 
+### Form Components
 - **Button** - Versatile button component with multiple variants (primary, secondary, outline, ghost, danger, success)
-- **Modal** - Accessible dialog/modal component with customizable sizes
-- **Tooltip** - Contextual information overlay with multiple positions
-- **Dropdown** - Select/dropdown component with search support
 - **Input** - Form input component with validation and error states
+- **TextArea** - Multi-line text input with character counter
+- **Checkbox** - Accessible checkbox with custom styling
+- **Switch** - Toggle switch component for boolean values
+- **Dropdown** - Select/dropdown component with search support
+
+### Layout & Display
+- **Card** - Container component with header, body, and footer sections
+- **Modal** - Accessible dialog/modal component with customizable sizes
+- **Alert** - Notification component for info, success, warning, and error messages
+
+### Feedback & Indicators
+- **Badge** - Small status and label indicators
+- **Tooltip** - Contextual information overlay with multiple positions
+- **Spinner** - Loading indicator with multiple sizes and variants
 
 ## Installation
 

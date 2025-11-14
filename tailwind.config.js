@@ -7,45 +7,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Electric Pink primary
+        // Modern Blue primary
         primary: {
-          50: '#fff0f9',
-          100: '#ffe0f3',
-          200: '#ffc1e8',
-          300: '#ff92d8',
-          400: '#ff52c1',
-          500: '#ff006e',
-          600: '#e6006b',
-          700: '#c00059',
-          800: '#9e0049',
-          900: '#82003d',
-          950: '#500026',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
         },
-        // Electric Purple secondary
+        // Indigo/Purple secondary
         secondary: {
-          50: '#f5f0ff',
-          100: '#ede5ff',
-          200: '#ddd0ff',
-          300: '#c4abff',
-          400: '#a779ff',
-          500: '#8338ec',
-          600: '#7420e0',
-          700: '#6318c5',
-          800: '#5315a0',
-          900: '#451382',
-          950: '#2a0a57',
+          50: '#eef2ff',
+          100: '#e0e7ff',
+          200: '#c7d2fe',
+          300: '#a5b4fc',
+          400: '#818cf8',
+          500: '#6366f1',
+          600: '#4f46e5',
+          700: '#4338ca',
+          800: '#3730a3',
+          900: '#312e81',
+          950: '#1e1b4b',
         },
         // Accent colors
         accent: {
-          blue: {
-            50: '#eff6ff',
-            500: '#3a86ff',
-            600: '#2563eb',
+          purple: {
+            50: '#faf5ff',
+            500: '#a855f7',
+            600: '#9333ea',
           },
-          orange: {
-            50: '#fff7ed',
-            500: '#fb5607',
-            600: '#ea580c',
+          teal: {
+            50: '#f0fdfa',
+            500: '#14b8a6',
+            600: '#0d9488',
           },
         },
         // Deep space neutral

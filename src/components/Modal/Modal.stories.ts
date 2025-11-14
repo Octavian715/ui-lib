@@ -67,6 +67,7 @@ export const Default: Story = {
     `,
   }),
   args: {
+    isOpen: false,
     title: 'Example Modal',
     description: 'This is an example modal dialog with a title and description.',
     size: 'md',
@@ -116,6 +117,7 @@ export const LargeModal: Story = {
     `,
   }),
   args: {
+    isOpen: false,
     title: 'Large Modal',
     description: 'This modal uses the large size variant.',
     size: 'lg',
@@ -155,6 +157,7 @@ export const DangerModal: Story = {
     `,
   }),
   args: {
+    isOpen: false,
     title: 'Delete Confirmation',
     description: 'This action is irreversible.',
     confirmText: 'Delete',
@@ -198,6 +201,7 @@ export const NoFooter: Story = {
     `,
   }),
   args: {
+    isOpen: false,
     title: 'No Footer Modal',
     showFooter: false,
   },
@@ -252,4 +256,7 @@ export const CustomSlots: Story = {
       </div>
     `,
   }),
+  args: {
+    isOpen: false,
+  },
 }

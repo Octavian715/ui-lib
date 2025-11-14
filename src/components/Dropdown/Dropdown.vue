@@ -91,7 +91,7 @@ import {
 } from '@headlessui/vue'
 import { cn } from '@/utils/cn'
 
-interface DropdownProps {
+export interface DropdownProps<T = any> {
   modelValue?: T
   options: T[]
   label?: string

@@ -70,8 +70,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import { cn } from '@/utils/cn'
+
+const slots = useSlots()
 
 interface InputProps {
   modelValue?: string | number
@@ -145,8 +147,8 @@ const inputClass = computed(() => {
     props.readonly && 'cursor-default bg-neutral-800',
 
     // Padding adjustments for icons
-    props.$slots?.prefix && 'pl-10',
-    (props.$slots?.suffix || props.clearable) && 'pr-10',
+    slots.prefix && 'pl-10',
+    (slots.suffix || props.clearable) && 'pr-10',
 
     sizeClasses[props.size]
   )

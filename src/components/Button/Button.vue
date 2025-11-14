@@ -35,7 +35,7 @@
 import { computed } from 'vue'
 import { buttonVariants, type ButtonVariantProps } from './buttonVariants'
 
-interface ButtonProps extends ButtonVariantProps {
+interface ButtonProps extends /* @vue-ignore */ ButtonVariantProps {
   disabled?: boolean
   loading?: boolean
   type?: 'button' | 'submit' | 'reset'

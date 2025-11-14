@@ -4,7 +4,7 @@ import Dropdown from './Dropdown.vue'
 
 const meta = {
   title: 'Components/Dropdown',
-  component: Dropdown,
+  component: Dropdown as any,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -21,7 +21,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof Dropdown>
+} satisfies Meta<any>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -55,6 +55,7 @@ export const Simple: Story = {
   args: {
     label: 'Choose an option',
     placeholder: 'Select...',
+    options: [],
   },
 }
 
@@ -89,6 +90,7 @@ export const WithObjects: Story = {
   args: {
     label: 'Assign to',
     placeholder: 'Select a person...',
+    options: [],
   },
 }
 
@@ -126,6 +128,9 @@ export const Sizes: Story = {
       </div>
     `,
   }),
+  args: {
+    options: [],
+  },
 }
 
 export const WithError: Story = {
@@ -152,6 +157,7 @@ export const WithError: Story = {
     label: 'Required field',
     placeholder: 'Please select...',
     error: true,
+    options: [],
   },
 }
 
@@ -177,6 +183,7 @@ export const Disabled: Story = {
   args: {
     label: 'Disabled dropdown',
     disabled: true,
+    options: [],
   },
 }
 
@@ -209,6 +216,7 @@ export const Categories: Story = {
   args: {
     label: 'Select a category',
     placeholder: 'Choose...',
+    options: [],
   },
 }
 
@@ -235,5 +243,6 @@ export const LongList: Story = {
   args: {
     label: 'Scrollable list',
     placeholder: 'Select from many options...',
+    options: [],
   },
 }

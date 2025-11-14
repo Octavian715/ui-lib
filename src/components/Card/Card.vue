@@ -1,5 +1,5 @@
 <template>
-  <div :class="cardClass">
+  <div :class="cardClass" @click="handleClick">
     <div v-if="$slots.header || title" :class="headerClass">
       <slot name="header">
         <h3 v-if="title" class="text-lg font-semibold text-white">{{ title }}</h3>

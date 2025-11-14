@@ -8,9 +8,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/ui-lib.es.js",
-      "require": "./dist/ui-lib.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/ui-lib.umd.js"
     },
     "./style.css": "./dist/style.css"
   },

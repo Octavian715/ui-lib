@@ -534,9 +534,9 @@ const sliderContainerClass = computed(() => {
 
 const trackClass = computed(() => {
   const sizeClasses = {
-    sm: 'h-1',
-    md: 'h-1.5',
-    lg: 'h-2',
+    sm: 'h-1.5 md:h-1', // Thicker on mobile
+    md: 'h-2 md:h-1.5',
+    lg: 'h-2.5 md:h-2',
   }
 
   return cn(
@@ -558,9 +558,9 @@ const fillClass = computed(() =>
 
 const thumbClass = computed(() => {
   const sizeClasses = {
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-6 w-6',
+    sm: 'h-5 w-5 md:h-4 md:w-4', // Larger on mobile for better touch targets
+    md: 'h-6 w-6 md:h-5 md:w-5',
+    lg: 'h-7 w-7 md:h-6 md:w-6',
   }
 
   return cn(
@@ -569,8 +569,11 @@ const thumbClass = computed(() => {
     'transition-all duration-150',
     'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-950',
     colorClasses.value.thumb,
-    !props.disabled && 'cursor-grab active:cursor-grabbing hover:scale-110',
+    // Better touch feedback
+    !props.disabled && 'cursor-grab active:cursor-grabbing active:scale-110 md:hover:scale-110',
     props.disabled && 'cursor-not-allowed opacity-50',
+    // Larger hit area on mobile
+    'before:content-[""] before:absolute before:inset-[-8px] before:rounded-full md:before:inset-[-4px]',
     sizeClasses[props.size]
   )
 })
@@ -581,8 +584,12 @@ const valueTooltipClass = computed(() =>
     'px-2 py-1 rounded text-xs font-medium',
     'bg-neutral-900 text-white border border-white/10',
     'whitespace-nowrap pointer-events-none',
-    'opacity-0 group-hover:opacity-100 transition-opacity',
-    isDragging.value && 'opacity-100'
+    // Show on mobile always when showValue is true, on desktop show on hover/drag
+    'md:opacity-0 md:group-hover:opacity-100',
+    isDragging.value && 'opacity-100',
+    'transition-opacity duration-200',
+    // Mobile: always visible when dragging or when prop is set
+    'opacity-100 md:opacity-0'
   )
 )
 

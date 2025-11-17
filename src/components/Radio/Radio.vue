@@ -150,7 +150,8 @@ const labelWrapperClass = computed(() => {
   if (props.variant === 'card') {
     return cn(
       'relative flex items-start gap-3',
-      'p-4 rounded-lg border-2',
+      // Responsive padding - smaller on mobile
+      'p-3 md:p-4 rounded-lg border-2',
       'transition-all duration-200',
       'bg-neutral-900/30 backdrop-blur-sm',
       props.error
@@ -160,17 +161,20 @@ const labelWrapperClass = computed(() => {
       colorClasses.value.cardBg,
       props.disabled
         ? 'cursor-not-allowed opacity-50'
-        : 'cursor-pointer hover:border-white/20 hover:bg-white/5',
+        : 'cursor-pointer active:bg-white/10 md:hover:border-white/20 md:hover:bg-white/5',
       'peer-focus-visible:ring-2',
       colorClasses.value.ring,
-      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950'
+      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950',
+      // Better touch target on mobile
+      'min-h-[56px] md:min-h-0'
     )
   }
 
   if (props.variant === 'button') {
     return cn(
       'relative flex items-center justify-center gap-2',
-      'px-4 py-2.5 rounded-lg border-2',
+      // Responsive padding
+      'px-3 py-2 md:px-4 md:py-2.5 rounded-lg border-2',
       'transition-all duration-200',
       'bg-neutral-900/30 backdrop-blur-sm',
       props.error
@@ -180,16 +184,19 @@ const labelWrapperClass = computed(() => {
       colorClasses.value.cardBg,
       props.disabled
         ? 'cursor-not-allowed opacity-50'
-        : 'cursor-pointer hover:border-white/20 hover:bg-white/5',
+        : 'cursor-pointer active:bg-white/10 md:hover:border-white/20 md:hover:bg-white/5',
       'peer-focus-visible:ring-2',
       colorClasses.value.ring,
-      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950'
+      'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-950',
+      // Minimum touch target on mobile
+      'min-h-[44px] md:min-h-0'
     )
   }
 
   return cn(
     'relative flex items-start gap-3',
-    props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+    // Better touch feedback
+    props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer active:opacity-80'
   )
 })
 
@@ -248,24 +255,29 @@ const contentWrapperClass = computed(() =>
 
 const labelClass = computed(() => {
   const sizeClasses = {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg',
+    sm: 'text-sm md:text-sm',
+    md: 'text-base md:text-base',
+    lg: 'text-lg md:text-lg',
   }
 
   return cn(
     'text-neutral-200 select-none font-medium',
     'peer-checked:text-white',
     'transition-colors duration-200',
+    // Slightly larger line-height on mobile for readability
+    'leading-snug md:leading-normal',
     sizeClasses[props.size]
   )
 })
 
 const descriptionClass = computed(() =>
   cn(
-    'text-sm text-neutral-400 select-none',
+    // Responsive font size
+    'text-sm md:text-sm text-neutral-400 select-none',
     'peer-checked:text-neutral-300',
-    'transition-colors duration-200'
+    'transition-colors duration-200',
+    // Better line-height for readability
+    'leading-relaxed'
   )
 )
 

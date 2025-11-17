@@ -71,18 +71,18 @@
           </div>
 
           <!-- Weekday Headers -->
-          <div class="grid grid-cols-7 gap-1 p-2 border-b border-white/10">
+          <div class="grid grid-cols-7 gap-1 md:gap-1 p-3 md:p-2 border-b border-white/10">
             <div
               v-for="day in weekDays"
               :key="day"
-              class="text-center text-xs font-semibold text-neutral-400 py-2"
+              class="text-center text-sm md:text-xs font-semibold text-neutral-400 py-2"
             >
               {{ day }}
             </div>
           </div>
 
           <!-- Calendar Grid -->
-          <div class="grid grid-cols-7 gap-1 p-2">
+          <div class="grid grid-cols-7 gap-1 md:gap-1 p-3 md:p-2">
             <button
               v-for="day in calendarDays"
               :key="`${day.date.getTime()}`"
@@ -489,33 +489,47 @@ const calendarClass = computed(() =>
     'absolute z-50 mt-2',
     'bg-neutral-900 border-2 border-white/10 rounded-lg',
     'shadow-2xl backdrop-blur-sm',
-    'min-w-[320px]'
+    // Responsive width: full width on mobile, min 320px on desktop
+    'w-full md:w-auto md:min-w-[320px]',
+    // Better mobile positioning
+    'left-0 right-0 md:left-auto md:right-auto',
+    // Max width on mobile to prevent overflow
+    'max-w-[calc(100vw-2rem)] md:max-w-none'
   )
 )
 
 const navButtonClass = computed(() =>
   cn(
-    'p-1.5 rounded-md',
+    // Larger touch targets on mobile
+    'p-2 md:p-1.5 rounded-md',
     'text-neutral-400 hover:text-white hover:bg-white/10',
     'transition-all duration-150',
-    'focus:outline-none focus:ring-2 focus:ring-primary-500/50'
+    'focus:outline-none focus:ring-2 focus:ring-primary-500/50',
+    // Larger icon on mobile
+    'min-w-[40px] md:min-w-0 min-h-[40px] md:min-h-0 flex items-center justify-center'
   )
 )
 
 const selectClass = computed(() =>
   cn(
-    'px-2 py-1 rounded-md',
+    // Better touch targets
+    'px-2 py-1.5 md:py-1 rounded-md',
     'bg-neutral-800 border border-white/10',
-    'text-neutral-200 text-sm font-medium',
+    // Responsive font size
+    'text-neutral-200 text-base md:text-sm font-medium',
     'focus:outline-none focus:ring-2 focus:ring-primary-500/50',
-    'cursor-pointer'
+    'cursor-pointer',
+    // Minimum touch target size on mobile
+    'min-h-[40px] md:min-h-0'
   )
 )
 
 const getDayClass = (day: CalendarDay) => {
   return cn(
-    'h-9 w-9 rounded-lg',
-    'text-sm font-medium',
+    // Larger touch targets on mobile
+    'h-10 w-10 md:h-9 md:w-9 rounded-lg',
+    // Responsive font size
+    'text-base md:text-sm font-medium',
     'transition-all duration-150',
     'focus:outline-none focus:ring-2 focus:ring-primary-500/50',
     // Current month vs other months
@@ -528,8 +542,8 @@ const getDayClass = (day: CalendarDay) => {
     day.isInRange && !day.isSelected && 'bg-primary-500/20',
     day.isRangeStart && 'rounded-l-lg',
     day.isRangeEnd && 'rounded-r-lg',
-    // Hover
-    !day.isSelected && day.isCurrentMonth && !isDateDisabled(day.date) && 'hover:bg-white/10',
+    // Better touch feedback on mobile
+    !day.isSelected && day.isCurrentMonth && !isDateDisabled(day.date) && 'active:bg-white/20 md:hover:bg-white/10',
     // Disabled
     (!day.isCurrentMonth || isDateDisabled(day.date)) && 'cursor-not-allowed opacity-50',
     day.isCurrentMonth && !isDateDisabled(day.date) && 'cursor-pointer'
@@ -538,12 +552,15 @@ const getDayClass = (day: CalendarDay) => {
 
 const footerButtonClass = computed(() =>
   cn(
-    'flex-1 px-3 py-1.5',
-    'text-sm font-medium text-neutral-300',
-    'bg-neutral-800 hover:bg-neutral-700',
+    'flex-1 px-3 py-2 md:py-1.5',
+    // Better font size on mobile
+    'text-base md:text-sm font-medium text-neutral-300',
+    'bg-neutral-800 hover:bg-neutral-700 active:bg-neutral-600',
     'border border-white/10 rounded-lg',
     'transition-colors duration-150',
-    'focus:outline-none focus:ring-2 focus:ring-primary-500/50'
+    'focus:outline-none focus:ring-2 focus:ring-primary-500/50',
+    // Minimum touch target
+    'min-h-[44px] md:min-h-0'
   )
 )
 
